@@ -7,12 +7,9 @@ tasks = []
 
 # Implement add_task function
 def add_task(title, description, due_date):
-    if not validate_task_title(title):
-        return False
-    if not validate_task_description(description):
-        return False
-    if not validate_due_date(due_date):
-        return False
+    validate_task_title(title)
+    validate_task_description(description)
+    validate_due_date(due_date)
     task = {
         "title": title,
         "description": description,
@@ -25,8 +22,7 @@ def add_task(title, description, due_date):
 # Implement mark_task_as_complete function
 def mark_task_as_complete(index, tasks=tasks):
     if index < 0 or index >= len(tasks):
-        print("Error: Invalid task number.")
-        return False
+        raise ValueError("Error: Invalid task number.")
     tasks[index]["completed"] = True
     print("Task marked as complete!")
 
