@@ -8,6 +8,8 @@ def validate_task_title(title):
 def validate_task_description(description):
     if len(description) == 0:
         raise ValueError("Error: Description cannot be empty.")
+    if len(description) > 500:
+        raise ValueError("Error: Description cannot be more than 500 characters.")
     return True
     
 def validate_due_date(due_date):
