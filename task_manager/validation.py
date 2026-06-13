@@ -1,19 +1,21 @@
+from datetime import datetime
+
 def validate_task_title(title):
-    if len(title.strip()) == 0:
-        print("Error: Task title cannot be empty.")
+    if not isinstance(title, str) or len(title.strip()) == 0:
+        print("Error: Title cannot be empty.")
         return False
     return True
-
-
+    
 def validate_task_description(description):
-    if len(description.strip()) == 0:
-        print("Error: Task description cannot be empty.")
+    if not isinstance(description, str) or len(description.strip()) == 0:
+        print("Error: Description cannot be empty.")
         return False
     return True
-
-
+    
 def validate_due_date(due_date):
-    if len(due_date.strip()) == 0:
-        print("Error: Due date cannot be empty.")
+    try:
+        datetime.strptime(due_date, "%Y-%m-%d")
+        return True
+    except ValueError:
+        print("Error: Due date must be in YYYY-MM-DD format.")
         return False
-    return True
